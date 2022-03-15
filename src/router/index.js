@@ -5,6 +5,8 @@ import Apropos from "../components/Apropos.vue";
 import Projets from "../components/Projets.vue";
 import Contact from "../components/Contact.vue";
 
+import Projet from "../components/Projet.vue";
+
 Vue.use(Router)
 
 export default new Router({
@@ -28,6 +30,11 @@ export default new Router({
             path: '/Contact',
             name: 'Contact',
             component: Contact
+        },
+        {
+            path: '/Projet/:id',
+            name: 'Projet',
+            component: Projet
         }
     ]
 })

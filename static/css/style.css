@@ -719,3 +719,8 @@ section.apropos {
 .description p::first-letter {
     font-size: 2em;
 }
+
+.imgProjet {
+    width: 50%;
+    margin: 1em;
+}

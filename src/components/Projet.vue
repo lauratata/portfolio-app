@@ -1,4 +1,3 @@
-<!--suppress ALL -->
 <template>
   <div>
     <header>
@@ -30,39 +29,48 @@
         <router-link to="/Contact">Contact</router-link>
       </li>
     </ul>
-    <main class="index">
-      <h1>Lorem</h1>
-      <div id="scroll-down-animation">
-  <span class="mouse">
-    <span class="move" onclick="scrollTo('.reseaux')"></span>
-  </span>
-        <h2>Scroll down</h2>
+
+    <main class="page-projet">
+      <div class="title">
+        <h1>Projet - {{ projet.acf.titre }}</h1>
       </div>
+
+      <div class="projet-grille">
+        <div class="listes">
+          <div class="type">
+            <h2>Type de projet : </h2>
+            <p>{{ projet.acf.type_projet.post_title }}</p>
+          </div>
+          <div class="date">
+            <h2>Date : </h2>
+            <p>{{ projet.acf.annee }}</p>
+          </div>
+          <div class="techno">
+            <h2>Technologies utilisées : </h2>
+            <div class="techBx">
+              <ion-icon name="logo-figma"></ion-icon>
+              <ion-icon name="logo-html5"></ion-icon>
+              <ion-icon name="logo-javascript"></ion-icon>
+              <ion-icon name="logo-css3"></ion-icon>
+              <ion-icon name="logo-vue"></ion-icon>
+            </div>
+          </div>
+          <div class="lien">
+            <h2>Lien vers le projet : </h2>
+            <a :href="projet.acf.lien">{{ projet.acf.lien }}</a>
+          </div>
+        </div>
+        <div class="description">
+          <p>{{
+              projet.acf.description
+            }}</p>
+        </div>
+      </div>
+      <img :src="projet.acf.image" :alt="projet.acf.titre"
+           class="imgProjet">
+
     </main>
 
-    <section class="reseaux">
-      <a href="https://dribbble.com/laurataormina/">
-        <img src="static/img/dribbble-logo.svg" alt="Dribbble Laura Taormina">
-      </a>
-      <a href="https://www.linkedin.com/in/laurataormina/">
-        <img src="static/img/LinkedIn-logo.svg" alt="LinkedIn Laura Taormina">
-      </a>
-      <a href="https://www.behance.net/laurataormina">
-        <img src="static/img/behance-logo.svg" alt="Behance Laura Taormina">
-      </a>
-    </section>
-
-    <section class="liens">
-      <div class="link">
-        <a href="apropos.html">
-          <div class="apropos">À propos.</div>
-        </a>
-        <a href="projets.html">
-          <div class="projets">Mes projets.</div>
-        </a>
-      </div>
-
-    </section>
     <footer>
       <h2>Si vous souhaitez discuter, n'hésitez pas à me contacter</h2>
       <h3><a href="mailto:laura.taormina@gmail.com">laura.taormina@gmail.com</a></h3>
@@ -96,39 +104,55 @@
         </a>
       </div>
     </footer>
+
   </div>
 </template>
 
 <script>
 
+import param from "../param/param.js";
+
 export default {
-  name: 'Accueil',
+  name: "Projet",
   data() {
-
+    return {
+      projet: {
+        id: 0,
+        acf: {
+          annee: null,
+          description: null,
+          etape: null,
+          image: null,
+          lien: null,
+          technologies: null,
+          titre: null,
+          type_projet: [
+            ID => 0,
+            post_title => null
+          ]
+        }
+      }
+    }
   },
-  mounted() {
-    const txtAnim = document.querySelector('h1');
 
-    new Typewriter(txtAnim, {
-      deleteSpeed: 20
-    })
-        .changeDelay(50)
-        .typeString('Je suis <spam class="jaune">Laura Taormina</spam>')
-        .pauseFor(50)
-        .deleteChars(15)
-        .typeString('<spam class="jaune"> UX/UI Designer Junior</spam>')
-        .pauseFor(1000)
-        .deleteChars(21)
-        .typeString('<spam class="jaune"> Développeuse Front Junior</spam>')
-        .pauseFor(1000)
-        .deleteChars(26)
-        .typeString('<spam class="jaune"> Laura Taormina</spam>')
-        .typeString('. Bienvenue dans mon système.')
-        .start();
+  created() {
+    //Récupération de l'id du projet
+    this.projet.id = this.$route.params.id;
+    console.log("ID projet", this.projet);
+
+    //Recherche du projet concerné
+    axios.get(param.host + "projet/" + this.projet.id)
+        .then(response => {
+          console.log("Reponse", response);
+          this.projet = response.data;
+        })
+        .catch(error => console.log(error))
   }
 }
 </script>
 
 <style scoped>
-
+#app > div > footer > form > section:nth-child(2) > input[type=text] {
+  height: 13.5em;
+}
 </style>
