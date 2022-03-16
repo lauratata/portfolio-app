@@ -54,12 +54,12 @@
 
     <section class="liens">
       <div class="link">
-        <a href="apropos.html">
+        <router-link to="/A-propos">
           <div class="apropos">À propos.</div>
-        </a>
-        <a href="projets.html">
+        </router-link>
+        <router-link to="/Projets">
           <div class="projets">Mes projets.</div>
-        </a>
+        </router-link>
       </div>
 
     </section>
