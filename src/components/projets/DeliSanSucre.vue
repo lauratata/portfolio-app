@@ -100,6 +100,12 @@
         </div>
 
         <div class="etapes">
+          <h3>Cahier des charges — Mise en page</h3>
+          <span class="img-etapes"><img src="static/img/projets/delisansucre/delisansucre-dossier.jpg"
+                                        alt="Cahier des charges DeliSanSucre"></span>
+        </div>
+
+        <div class="etapes">
           <h3>Maquette Desktop</h3>
           <span class="img-etapes"><img src="static/img/projets/delisansucre/delisansucre-index-ordi.png"
                                         alt="Maquette Desktop DeliSanSucre"></span>
