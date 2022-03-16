@@ -36,20 +36,108 @@
           <h1>Projets</h1>
         </div>
         <ul>
-          <li class="list active">All</li>
-          <li class="list">Web design</li>
-          <li class="list">Développement Web</li>
-          <li class="list">Graphic Design</li>
-          <li class="list">Motion Design</li>
+          <li class="list active" data-filter="all">All</li>
+          <li class="list" data-filter="webdesign">Web design</li>
+          <li class="list" data-filter="dvlpt">Développement Web</li>
+          <li class="list" data-filter="graphicd">Graphic Design</li>
         </ul>
         <div class="portfolio">
-          <div class="workBx" v-for="projet in liste" :key="projet.id">
-            <router-link :to="{ name: 'Projet', params: {id : projet.id } }">
+
+          <div class="workBx" data-item="webdesign">
+            <router-link to="/DeliSanSucre">
               <div class="imgBx">
-                <img :src="projet.acf.image" :alt="projet.acf.titre">
+                <img src="static/img/projets/delisansucre/delisansucre-visuel.png">
               </div>
               <div class="textBx">
-                <h3>Projet : {{ projet.acf.titre }}</h3>
+                <h3>Projet : DeliSanSucre</h3>
+              </div>
+            </router-link>
+          </div>
+
+          <div class="workBx" data-item="dvlpt">
+            <router-link to="/Tous-des-stalkers">
+              <div class="imgBx">
+                <img src="static/img/projets/tousdesstalkers/tds-visuel.png">
+              </div>
+              <div class="textBx">
+                <h3>Projet : Tous des Stalkers</h3>
+              </div>
+            </router-link>
+          </div>
+
+          <div class="workBx" data-item="webdesign">
+            <router-link to="/Vacaspace">
+              <div class="imgBx">
+                <img src="static/img/projets/vacaspace/vacaspace-visuel-thumbnail.jpg">
+              </div>
+              <div class="textBx">
+                <h3>Projet : Application de gestion des vacataires</h3>
+              </div>
+            </router-link>
+          </div>
+
+          <div class="workBx" data-item="webdesign">
+            <router-link to="/Boss">
+              <div class="imgBx">
+                <img src="static/img/projets/boss/boss-s3-thumbnail.jpg">
+              </div>
+              <div class="textBx">
+                <h3>Projet : Boss</h3>
+              </div>
+            </router-link>
+          </div>
+
+          <div class="workBx" data-item="graphicd">
+            <router-link to="/Bug-Days">
+              <div class="imgBx">
+                <img src="static/img/projets/bugdays/bugdays-logo.png">
+              </div>
+              <div class="textBx">
+                <h3>Projet : Bug Days</h3>
+              </div>
+            </router-link>
+          </div>
+
+          <div class="workBx" data-item="dvlpt">
+            <router-link to="/Aidtudes">
+              <div class="imgBx">
+                <img src="static/img/projets/aidtudes/aidtudes-visuel.png">
+              </div>
+              <div class="textBx">
+                <h3>Projet : Aidtudes</h3>
+              </div>
+            </router-link>
+          </div>
+
+          <div class="workBx" data-item="graphicd">
+            <router-link to="/Carte-de-visite">
+              <div class="imgBx">
+                <img src="static/img/projets/perso/CDV-2.jpg">
+              </div>
+              <div class="textBx">
+                <h3>Carte de visite</h3>
+              </div>
+            </router-link>
+          </div>
+
+          <div class="workBx" data-item="graphicd">
+            <router-link to="/Chat-Noir">
+              <div class="imgBx">
+                <img src="static/img/projets/perso/chat-noir.png">
+              </div>
+              <div class="textBx">
+                <h3>Travail personnel</h3>
+              </div>
+            </router-link>
+          </div>
+
+          <div class="workBx" data-item="graphicd">
+            <router-link to="/Gameboy">
+              <div class="imgBx">
+                <img src="static/img/projets/perso/gameboy.png">
+              </div>
+              <div class="textBx">
+                <h3>Travail personnel</h3>
               </div>
             </router-link>
           </div>
@@ -104,23 +192,23 @@ export default {
   name: "Projets",
   data() {
     return {
-      liste: []
+      // liste: []
     }
   },
 
-  created() {
-    //Liste des projets
-    axios.get(param.host + "projet")
-        .then(response => {
-          console.log("Reponse", response);
-          this.liste = response.data;
-        })
-        .catch(error => console.log(error))
-  },
+  // created() {
+  //   //Liste des projets
+  //   axios.get(param.host + "projet")
+  //       .then(response => {
+  //         console.log("Reponse", response);
+  //         this.liste = response.data;
+  //       })
+  //       .catch(error => console.log(error))
+  // },
 
   mounted() {
     let list = document.querySelectorAll('.list');
-    let itemBox = document.querySelectorAll('.itemBox');
+    let itemBox = document.querySelectorAll('.workBx');
 
     for (let i = 0; i < list.length; i++) {
       list[i].addEventListener('click', function () {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <header>
-      <router-link to="/" class="logo"><img src="static/img/logo.png" alt="Logo Laura Taormina">
+      <router-link to="/" class="logo"><img src="../../../static/img/logo.png" alt="Logo Laura Taormina">
       </router-link>
       <div class="rightSide">
         <div class="btns dayNight">
@@ -32,42 +32,39 @@
 
     <main class="page-projet">
       <div class="title">
-        <h1>Projet - {{ projet.acf.titre }}</h1>
+        <h1>Cartes de visite</h1>
       </div>
 
       <div class="projet-grille">
         <div class="listes">
           <div class="type">
             <h2>Type de projet : </h2>
-            <p>{{ projet.acf.type_projet.post_title }}</p>
+            <p>Graphic Design</p>
           </div>
           <div class="date">
             <h2>Date : </h2>
-            <p>{{ projet.acf.annee }}</p>
+            <p>2018</p>
           </div>
           <div class="techno">
             <h2>Technologies utilisées : </h2>
             <div class="techBx">
-              <ion-icon name="logo-figma"></ion-icon>
-              <ion-icon name="logo-html5"></ion-icon>
-              <ion-icon name="logo-javascript"></ion-icon>
-              <ion-icon name="logo-css3"></ion-icon>
-              <ion-icon name="logo-vue"></ion-icon>
+              <img src="static/img/technologies/icons8-adobe-indesign.png" alt="Adobe InDesign">
+              <img src="static/img/technologies/icons8-adobe-illustrator.png" alt="Adobe Illustrator">
             </div>
-          </div>
-          <div class="lien">
-            <h2>Lien vers le projet : </h2>
-            <a :href="projet.acf.lien">{{ projet.acf.lien }}</a>
           </div>
         </div>
         <div class="description">
-          <p>{{
-              projet.acf.description
-            }}</p>
+          <p>Cartes de visites réalisées dans le cadre d’un stage dans l’agence de communication Philor Communication en
+            2018 pour un agent immobilier.
+          </p>
         </div>
       </div>
-      <img :src="projet.acf.image" :alt="projet.acf.titre"
-           class="imgProjet">
+      <div class="img-grille">
+        <img src="static/img/projets/perso/CDV-1.jpg" alt="Carte de visite"
+             class="imgProjet">
+        <img src="static/img/projets/perso/CDV-2.jpg" alt="Carte de visite"
+             class="imgProjet">
+      </div>
 
     </main>
 
@@ -91,16 +88,16 @@
       </form>
       <div class="reseauxsoc">
         <a href="https://dribbble.com/laurataormina/">
-          <img src="static/img/dribbble-fill.svg" alt="Dribbble Laura Taormina">
+          <img src="../../../static/img/dribbble-fill.svg" alt="Dribbble Laura Taormina">
         </a>
         <a href="https://www.linkedin.com/in/laurataormina/">
-          <img src="static/img/linkedin-fill.svg" alt="LinkedIn Laura Taormina">
+          <img src="../../../static/img/linkedin-fill.svg" alt="LinkedIn Laura Taormina">
         </a>
         <a href="https://github.com/lauratata">
-          <img src="static/img/github.svg" alt="Github Laura Taormina">
+          <img src="../../../static/img/github.svg" alt="Github Laura Taormina">
         </a>
         <a href="https://www.behance.net/laurataormina">
-          <img src="static/img/behance-fill.svg" alt="Behance Laura Taormina">
+          <img src="../../../static/img/behance-fill.svg" alt="Behance Laura Taormina">
         </a>
       </div>
     </footer>
@@ -109,50 +106,11 @@
 </template>
 
 <script>
-
-import param from "../param/param.js";
-
 export default {
-  name: "Projet",
-  data() {
-    return {
-      projet: {
-        id: 0,
-        acf: {
-          annee: null,
-          description: null,
-          etape: null,
-          image: null,
-          lien: null,
-          technologies: null,
-          titre: null,
-          type_projet: [
-            ID => 0,
-            post_title => null
-          ]
-        }
-      }
-    }
-  },
-
-  created() {
-    //Récupération de l'id du projet
-    this.projet.id = this.$route.params.id;
-    console.log("ID projet", this.projet);
-
-    //Recherche du projet concerné
-    axios.get(param.host + "projet/" + this.projet.id)
-        .then(response => {
-          console.log("Reponse", response);
-          this.projet = response.data;
-        })
-        .catch(error => console.log(error))
-  }
+  name: "CarteVisite"
 }
 </script>
 
 <style scoped>
-#app > div > footer > form > section:nth-child(2) > input[type=text] {
-  height: 13.5em;
-}
+
 </style>
